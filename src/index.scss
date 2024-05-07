@@ -1,0 +1,9 @@
+@import "styles/base/reset.scss";
+@import "styles/base/typography.scss";
+
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  position: relative;
+  overflow: hidden;
+}

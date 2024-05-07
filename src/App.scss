@@ -1,0 +1,503 @@
+@import "styles/utilities/breakpoints.scss";
+@import "styles/base/typography.scss";
+@import "styles/base/colors.scss";
+
+.App {
+  box-sizing: border-box;
+  min-height: 100vh;
+  overflow-y: auto;
+
+  background-image: linear-gradient(190.34deg, #0d1e48 0.28%, #304571 100%);
+}
+
+.App_wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: calc(100vh - 50px);
+
+  @include md {
+    height: calc(100vh - 80px);
+  }
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: $color-black;
+  height: 50px;
+  box-sizing: border-box;
+
+  @include md {
+    box-sizing: border-box;
+    height: 80px;
+    padding: 28px 50px 28px 30px;
+  }
+
+  @include lg {
+    padding: 28px 90px 28px 80px;
+  }
+}
+
+.Header_burgerMenuIcon___close {
+  display: none;
+}
+
+.Header_burgerMenuIcon___open {
+  @include md {
+    display: none;
+  }
+}
+
+.Header_burgerCheckbox {
+  display: none;
+
+  &:checked ~ .Header_navigation {
+    visibility: visible;
+    opacity: 1;
+  }
+  &:checked ~ label .Header_burgerMenuIcon___close {
+    display: block;
+  }
+  &:checked ~ label .Header_burgerMenuIcon___open {
+    display: none;
+  }
+}
+
+.Header_navigation {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 50px);
+  z-index: 1;
+
+  background-color: $color-black;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+
+  @include md {
+    position: relative;
+    top: unset;
+    left: unset;
+    width: auto;
+    height: auto;
+    z-index: auto;
+
+    visibility: visible;
+    opacity: 1;
+    flex-direction: row;
+    gap: 30px;
+  }
+}
+
+.Header_navLinkContainer {
+  width: 50%;
+  padding: 20px 40px;
+  text-align: center;
+
+  border-bottom: 1px solid $color-white;
+
+  &:hover .Header_navLink {
+    background-image: linear-gradient(98.25deg, #ebff00 18.56%, #ff70d9 76.02%);
+    background-clip: text;
+    background-position: contain;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @include md {
+    border: none;
+    padding: 0;
+    width: auto;
+  }
+}
+
+.Header_navLink {
+  text-decoration: none;
+  color: $color-white;
+  font-size: 18px;
+  font-weight: $font-bold;
+}
+
+.Header_navLinkIcon:hover {
+  opacity: 0.6;
+  & path {
+    fill: url(#hoverGradient);
+  }
+}
+
+.Discover {
+  background-image: url("./assets/svg/planet.svg"), $space-gradient,
+    url("./assets/png/space1.png");
+
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: top -136px left 16px, top 0 left 0, left -500px top 0;
+  background-size: auto, auto, 1270px 555px;
+
+  padding: 250px 34px 44px 34px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 17px;
+
+  @include md {
+    background-size: 336px, auto, 100% 100%;
+    background-position: top 24px right -108px, top 0 left 0, top 0 left 0;
+    padding: 100px 0 100px 30px;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 22px;
+  }
+
+  @include lg {
+    background-size: 367px, auto, 100% 100%;
+    background-position: top 56px right 32px, top 0 left 0, top 0 left 0;
+    padding: 90px 0 120px 80px;
+  }
+}
+
+.Discover_heading {
+  font-size: 36px;
+  font-weight: $font-extra-bold;
+  line-height: 36px;
+  color: $color-white;
+  text-align: center;
+
+  @include md {
+    text-align: left;
+    font-size: 48px;
+    line-height: 48px;
+  }
+
+  @include lg {
+    font-size: 72px;
+    line-height: 72px;
+  }
+}
+
+.Discover_heading___pink {
+  color: $color-pink;
+}
+
+.Discover_subheading {
+  font-size: 16px;
+  font-weight: $font-extra-bold;
+  line-height: 26.4px;
+  color: $color-white;
+
+  @include md {
+    font-size: 22px;
+    line-height: 26.4px;
+  }
+
+  @include lg {
+    font-size: 32px;
+    line-height: 38.4px;
+  }
+}
+
+.Discover_subheading___yellow {
+  color: $color-yellow;
+}
+
+.Discover_button {
+  padding: 7px 40px;
+
+  background-color: $color-yellow;
+  color: $color-black;
+
+  font-size: 16px;
+  font-weight: $font-bold;
+
+  border: none;
+  border-radius: 100px;
+
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+
+  @include md {
+    padding: 14px 40px;
+    font-size: 22px;
+  }
+}
+
+.Offers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+
+  padding: 50px 20px;
+
+  @include md {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 55px 30px;
+  }
+
+  @include lg {
+    padding: 60px 80px;
+    gap: 40px;
+    & :nth-child(3n + 2) {
+      grid-column: span 2;
+
+      & .Offers_cardHeading {
+        font-size: 74px;
+        line-height: 74px;
+        max-width: 60%;
+      }
+
+      & .Offers_cardSubheading {
+        font-size: 26px;
+      }
+    }
+  }
+}
+
+.Offers_title {
+  color: $color-white;
+  font-size: 18px;
+  font-weight: $font-extra-bold;
+  align-self: flex-start;
+
+  @include md {
+    font-size: 24px;
+    grid-column: span 2;
+  }
+
+  @include lg {
+    font-size: 32px;
+  }
+}
+
+.Offers_card {
+  box-sizing: border-box;
+  width: 320px;
+  height: 350px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 22px;
+
+  padding: 37px 26px;
+
+  border-radius: 10px;
+
+  background-size: auto, cover;
+  background-repeat: no-repeat, no-repeat;
+
+  @include md {
+    aspect-ratio: 34/35;
+    width: 100%;
+    height: auto;
+  }
+
+  @include lg {
+    aspect-ratio: unset;
+    height: 350px;
+    width: auto;
+    padding: 37px 35px;
+  }
+}
+
+.Offers_card___bgSpace2 {
+  background-image: $space-gradient, url("./assets/png/space2.png");
+}
+
+.Offers_card___bgSpace3 {
+  background-image: $space-gradient, url("./assets/png/space3.png");
+}
+
+.Offers_card___bgSpace4 {
+  background-image: $space-gradient, url("./assets/png/space4.png");
+}
+
+.Offers_card___bgSpace5 {
+  background-image: $space-gradient, url("./assets/png/space5.png");
+}
+
+.Offers_cardHeading {
+  color: $color-white;
+  font-weight: $font-extra-bold;
+  font-size: 40px;
+  line-height: 40px;
+  max-width: 90%;
+
+  @include lg {
+    font-size: 46px;
+    line-height: 46px;
+  }
+}
+
+.Offers_cardSubheading {
+  color: $color-white;
+  font-weight: $font-extra-bold;
+  font-size: 16px;
+  line-height: 19.2px;
+
+  @include lg {
+    font-size: 24px;
+  }
+}
+
+.Offers_learnButton {
+  padding: 7px 40px;
+  background: transparent;
+  border: 2px solid $color-yellow;
+  border-radius: 100px;
+
+  color: $color-yellow;
+  font-weight: $font-bold;
+  font-size: 16px;
+
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+
+  @include lg {
+    font-size: 22px;
+    padding: 14px 40px;
+  }
+}
+
+.Summary {
+  padding: 0 20px 50px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+
+  @include md {
+    padding: 0 30px 53px 30px;
+    gap: 13px;
+  }
+
+  @include lg {
+    padding: 0 80px 60px 80px;
+    gap: 17px;
+  }
+}
+
+.Summary_heading {
+  color: $color-white;
+  font-size: 18px;
+  font-weight: $font-extra-bold;
+
+  @include md {
+    font-size: 24px;
+  }
+
+  @include lg {
+    font-size: 32px;
+  }
+}
+
+.Summary_content {
+  color: $color-white;
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: $font-bold;
+  opacity: 0.6;
+
+  @include md {
+    font-size: 16px;
+  }
+
+  @include lg {
+    font-size: 20px;
+  }
+}
+
+.Summary_extendedContent {
+  display: none;
+}
+
+.Summary_readMoreText {
+  color: $color-yellow;
+  font-size: 14px;
+  font-weight: $font-extra-bold;
+
+  transition: 0.3s;
+
+  &::before {
+    content: "Read more";
+  }
+
+  &:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+
+  @include md {
+    font-size: 16px;
+    margin-top: 7px;
+  }
+
+  @include lg {
+    font-size: 20px;
+  }
+}
+
+.Summary_readMoreCheckbox {
+  display: none;
+
+  &:checked ~ .Summary_content .Summary_extendedContent {
+    display: inline;
+  }
+
+  &:checked ~ .Summary_readMoreText::before {
+    content: "Read less";
+  }
+}
+
+.Footer {
+  padding-bottom: 19px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 127px;
+
+  background-color: $color-black;
+}
+
+.Footer_rocket {
+  width: 119px;
+  transform: rotate(64.48deg);
+}
+
+.Footer_text {
+  color: $color-yellow;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: $font-extra-bold;
+
+  margin-top: -22px;
+}
